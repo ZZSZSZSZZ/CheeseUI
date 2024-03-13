@@ -105,6 +105,18 @@ void ListPushBack(PageLinkList _pageLinkList, PageNode* page)
 	_page->prev = tail;
 }
 
+/// @brief 链表尾删
+/// @param _pageLinkList 页面链表
+void ListPopBack(PageLinkList _pageLinkList)
+{
+	PageNode* tail = _pageLinkList->prev;//记录头结点的前一个结点
+	PageNode* newtail = tail->prev;//记录tail结点的前一个结点
+	//建立头结点与newtail结点之间的双向关系
+	newtail->next = _pageLinkList;
+	_pageLinkList->prev = newtail;
+	free(tail);//释放tail结点
+}
+
 /// @brief 根据页面ID查找对应页面
 /// @param pageID 页面ID
 /// @return 页面节点
@@ -121,14 +133,4 @@ PageNode* LocateElem(uint16_t pageID)
 		cur = cur->next;
   }
   return NULL;
-}
-
-void ListPopBack(PageLinkList _pageLinkList)
-{
-	PageNode* tail = _pageLinkList->prev;//记录头结点的前一个结点
-	PageNode* newtail = tail->prev;//记录tail结点的前一个结点
-	//建立头结点与newtail结点之间的双向关系
-	newtail->next = _pageLinkList;
-	_pageLinkList->prev = newtail;
-	free(tail);//释放tail结点
 }
