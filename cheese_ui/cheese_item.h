@@ -2,7 +2,7 @@
   *文件名: cheese_item.h
   *创建时间: 2024-03-03 17:10:58
   *作者: ZZSZSZSZZ
-  *描述: 项
+  *描述: 定义了项节点的结构和项类型的枚举
 */
 
 #ifndef __CHEESE_ITEM_H__

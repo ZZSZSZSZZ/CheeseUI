@@ -2,7 +2,7 @@
   *文件名: cheese_page.h
   *创建时间: 2024-03-03 16:29:06
   *作者: ZZSZSZSZZ
-  *描述: 页面
+  *描述: 定义了页面节点的结构和页面类型的枚举
 */
 
 #ifndef __CHEESE_PAGE_H__
@@ -46,9 +46,9 @@ extern PageLinkList pageLinkList;
 PageLinkList InitPageLinkList();
 void AddPage(PageNode* page, bool usePageTitle, char* pageTitle, PageType funcType);
 void AddItem(PageNode* page, ItemNode* item, char* title, ItemType funcType);
-PageNode* LocateElem(uint16_t pageID);
 void ListPushBack(PageLinkList _pageLinkList, PageNode* page);
 void ListPopBack(PageLinkList _pageLinkList);
+PageNode* LocateElem(uint16_t pageID);
 
 #ifdef __cplusplus
 }

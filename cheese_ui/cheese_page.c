@@ -2,7 +2,7 @@
   *文件名: cheese_page.c
   *创建时间: 2024-03-04 13:11:40
   *作者: ZZSZSZSZZ
-  *描述: 
+  *描述: 实现了页面链表的初始化和操作，它包括了页面节点和项节点的添加、尾插和尾删等功能
 */
 
 /* include */
@@ -12,7 +12,7 @@
 
 /* variables */
 PageLinkList pageLinkList; //页面链表
-uint16_t _pageID = -1;
+uint16_t _pageID;
 bool initPageLink;
 /* function prototype */
 
@@ -37,27 +37,28 @@ PageLinkList InitPageLinkList()
   */
 void AddPage(PageNode* page, bool usePageTitle, char* pageTitle, PageType funcType)
 {
+  //页面链表初始化
   if (initPageLink == false)
   {
     pageLinkList = InitPageLinkList();
   }
 
+  //项列表初始化
   page->itemLinkList = (ItemNode*)malloc(sizeof(ItemNode));
   page->itemLinkList->prev = page->itemLinkList;
   page->itemLinkList->next = page->itemLinkList;
 
-  page->next = NULL;
+  //页面节点赋值
   page->usePageTitle = usePageTitle;
-
   if (usePageTitle == 1)
   {
     page->pageTitle = pageTitle;
   }
-
   page->funcType = funcType;
+  page->pageID = _pageID++;
 
-  page->pageID = ++_pageID;
-
+  //把页面节点添加到页面链表里(尾插)
+  page->next = NULL;
   PageNode* tail = pageLinkList->prev;
 	page->next = pageLinkList;
 	pageLinkList->prev = page;
@@ -88,7 +89,6 @@ void AddItem(PageNode* page, ItemNode* item, char* itemTitle, ItemType funcType)
 	tail->next = item;
 	item->prev = tail;
 }
-
 
 /// @brief 链表尾插
 /// @param _pageLinkList 页面链表
