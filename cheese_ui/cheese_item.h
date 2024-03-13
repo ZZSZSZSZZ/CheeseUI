@@ -18,26 +18,25 @@ extern "C" {
 /// @brief 项类型
 typedef enum
 {
-  ITEM_PAGE_DESCRIPTION, //项页面描述
-  ITEM_JUMP_PAGE, //项跳转页面
-  ITEM_SWITCH, //项切换
-  ITEM_CHANGE_VALUE, //项更改值
-  ITEM_PROGRESS_BAR, //项进度条
-  ITEM_RADIO_BUTTON, //项单选按钮
-  ITEM_CHECKBOX, //项复选框
-  ITEM_MESSAGE //项消息类型
+  ITEM_PAGE_DESCRIPTION, //项_页面描述
+  ITEM_MESSAGE,
+  ITEM_JUMP_PAGE, //项_跳转页面
+  ITEM_BOOL, //项_布尔: 只有开和关
 } ItemType;
 
 /// @brief 项节点
 typedef struct Item
 {
   //数据域
+    //核心数据
   ItemType funcType; //项类型
   int16_t listId; //项ID
   char* title;
 
+    //可变数据
   char* msg;
-  uint16_t pageID;
+  uint16_t item_PageID;
+  bool boolSwitch;
 
   //指针域
 	struct Item* prev; //前驱指针

@@ -72,17 +72,37 @@ void AddPage(PageNode* page, bool usePageTitle, char* pageTitle, PageType funcTy
   * @param  item: 需要添加的项节点
   * @param  itemTitle: 为你的项取个名字吧 (｡･∀･)ﾉﾞ
   * @param  funcType: 定义项类型
+  * @param  ... 可变参数，由funcType决定
   * @retval None
   */
-void AddItem(PageNode* page, ItemNode* item, char* itemTitle, ItemType funcType)
+void AddItem(PageNode* page, ItemNode* item, char* itemTitle, ItemType funcType, ...)
 {
-  item->title = itemTitle;
+  va_list argp; //用于存储通过va_arg获取的额外参数
+  va_start(argp, funcType); //初始化argp变量，让argp指向可变参数表里面的第一个参数
+
   item->funcType = funcType;
-  item->next = NULL;
+  switch (funcType)
+  {
+  case ITEM_JUMP_PAGE:
+    item->item_PageID = va_arg(argp, int);
+    // char* c = strTcpy(itemTitle,"+ ");
+    item->title = itemTitle;
+    break;
+  case ITEM_BOOL:
+    // item->boolSwitch = va_arg(argp, bool);
+    item->title = itemTitle;
+    break;
+  case ITEM_MESSAGE:
+    item->title = itemTitle;
+    break;
+  default:
+    break;
+  }
 
   item->listId = page->itemLength;
   page->itemLength++;
 
+  item->next = NULL;
   ItemNode* tail = page->itemLinkList->prev;
 	item->next = page->itemLinkList;
 	page->itemLinkList->prev = item;

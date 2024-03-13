@@ -55,9 +55,8 @@ void Input()
 
 void Jamp()
 {
-  // currentPage = LocateElem(currentPage->itemHead->pageID);
-  // currentPage = LocateElem(1);
-  ListPushBack(pageOperLinkList, LocateElem(1));
+  // ListPushBack(pageOperLinkList, LocateElem(1));
+  ListPushBack(pageOperLinkList, LocateElem(currentItem->item_PageID));
   currentItem = pageOperLinkList->prev->itemLinkList->next;
 
   b = 0;

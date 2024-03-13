@@ -16,6 +16,7 @@ extern "C" {
 #include "main.h"
 #include "stdbool.h"
 #include "stdlib.h"
+#include "stdarg.h"
 #include "cheese_item.h"
 
 typedef enum
@@ -45,7 +46,7 @@ extern PageLinkList pageLinkList;
 
 PageLinkList InitPageLinkList();
 void AddPage(PageNode* page, bool usePageTitle, char* pageTitle, PageType funcType);
-void AddItem(PageNode* page, ItemNode* item, char* title, ItemType funcType);
+void AddItem(PageNode* page, ItemNode* item, char* title, ItemType funcType, ...);
 void ListPushBack(PageLinkList _pageLinkList, PageNode* page);
 void ListPopBack(PageLinkList _pageLinkList);
 PageNode* LocateElem(uint16_t pageID);
