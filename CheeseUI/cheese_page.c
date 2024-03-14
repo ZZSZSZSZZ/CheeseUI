@@ -99,6 +99,8 @@ void AddItem(PageNode* page, ItemNode* item, char* itemTitle, ItemType funcType,
     break;
   }
 
+  va_end(argp);
+
   item->listId = page->itemLength;
   page->itemLength++;
 
