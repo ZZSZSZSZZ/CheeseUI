@@ -27,7 +27,6 @@ void Draw_Cursor();
 void Input();
 void Jamp();
 void Buck();
-void ListPushBack(PageLinkList _pageLinkList, PageNode* page);
 
 #ifdef __cplusplus
 }

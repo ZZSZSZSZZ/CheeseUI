@@ -27,7 +27,7 @@ typedef enum
 } PageType;
 
 /// @brief 页面节点
-typedef struct PageNode
+typedef struct Page
 {
   //数据域
   PageType funcType; //页面类型
@@ -38,13 +38,12 @@ typedef struct PageNode
   char* pageTitle; //页面标题
 
   //指针域
-  struct PageNode* prev; //前驱指针
-  struct PageNode* next; //后继指针
+  struct Page* prev; //前驱指针
+  struct Page* next; //后继指针
 } PageNode, *PageLinkList;
 
-extern PageLinkList pageLinkList;
-
 PageLinkList InitPageLinkList();
+PageLinkList GetPageLinkList();
 void AddPage(PageNode* page, bool usePageTitle, char* pageTitle, PageType funcType);
 void AddItem(PageNode* page, ItemNode* item, char* title, ItemType funcType, ...);
 void ListPushBack(PageLinkList _pageLinkList, PageNode* page);

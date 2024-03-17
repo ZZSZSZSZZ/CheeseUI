@@ -13,7 +13,7 @@
 /* variables */
 PageLinkList pageLinkList; //页面链表
 uint16_t _pageID;
-bool initPageLink;
+bool initPageLink = false;
 /* function prototype */
 
 /// @brief 页面链表初始化
@@ -27,6 +27,11 @@ PageLinkList InitPageLinkList()
   return _pageLinkList;
 }
 
+PageLinkList GetPageLinkList()
+{
+  return pageLinkList;
+}
+
 /**
   * @brief  添加页面
   * @param  page: 需要添加的页面节点
@@ -37,7 +42,7 @@ PageLinkList InitPageLinkList()
   */
 void AddPage(PageNode* page, bool usePageTitle, char* pageTitle, PageType funcType)
 {
-  //页面链表初始化
+  //页面链表初始化(只会执行一次)
   if (initPageLink == false)
   {
     pageLinkList = InitPageLinkList();
@@ -54,8 +59,25 @@ void AddPage(PageNode* page, bool usePageTitle, char* pageTitle, PageType funcTy
   {
     page->pageTitle = pageTitle;
   }
-  page->funcType = funcType;
   page->pageID = _pageID++;
+
+  va_list argp; //用于存储通过va_arg获取的额外参数
+  va_start(argp, funcType); //初始化argp变量，让argp指向可变参数表里面的第一个参数
+
+  page->funcType = funcType;
+
+  switch (funcType)
+  {
+  case PAGE_LIST:
+    break;
+  case PAGE_SIDEBAR:
+    break;
+  case PAGE_CUSTOM:
+    break;
+  default:
+    break;
+  }
+  va_end(argp);
 
   //把页面节点添加到页面链表里(尾插)
   page->next = NULL;
@@ -98,12 +120,12 @@ void AddItem(PageNode* page, ItemNode* item, char* itemTitle, ItemType funcType,
   default:
     break;
   }
-
   va_end(argp);
 
   item->listId = page->itemLength;
   page->itemLength++;
 
+  //将项节点插入页面节点里的项链表(尾插)
   item->next = NULL;
   ItemNode* tail = page->itemLinkList->prev;
 	item->next = page->itemLinkList;

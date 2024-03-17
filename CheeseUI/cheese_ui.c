@@ -21,8 +21,10 @@ uint16_t b = 0;
 
 void UIInit()
 {
-  pageOperLinkList = InitPageLinkList();
-  ListPushBack(pageOperLinkList, pageLinkList->next);
+  pageOperLinkList = InitPageLinkList(); //初始化操作链表
+
+  ListPushBack(pageOperLinkList, GetPageLinkList()->next); //把页面链表的第一个页面添加到操作链表
+
   currentItem = pageOperLinkList->next->itemLinkList->next;
   cursor.cursorPos = 16;
 }

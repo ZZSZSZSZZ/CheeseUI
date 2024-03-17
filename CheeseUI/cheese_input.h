@@ -17,6 +17,11 @@ extern "C" {
 #include "multi_button.h"
 #include "cheese_ui.h"
 
+typedef struct Input
+{
+  int a; //占位
+} InputNode;
+
 
 void buttonInit(void);
 
