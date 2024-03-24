@@ -34,13 +34,14 @@ PageLinkList GetPageLinkList()
 
 /**
   * @brief  添加页面
-  * @param  page: 需要添加的页面节点
-  * @param  usePageTitle: 是否使用页面标题, true (非零) or false (0)
-  * @param  pageTitle: 为你的页面取个名字吧 (｡･∀･)ﾉﾞ
-  * @param  funcType: 定义页面类型, PAGE_LIST: 列表类型, PAGE_CUSTOM: 自定义类型
+  * @param  page 需要添加的页面节点
+  * @param  usePageTitle 是否使用页面标题, true (非零) or false (0)
+  * @param  pageTitle 为你的页面取个名字吧 (｡･∀･)ﾉﾞ
+  * @param  funcType 定义页面类型, PAGE_LIST: 列表类型, PAGE_CUSTOM: 自定义类型
+  * @param  ... 可变参数，由funcType决定
   * @retval None
   */
-void AddPage(PageNode* page, bool usePageTitle, char* pageTitle, PageType funcType)
+void AddPage(PageNode* page, bool usePageTitle, char* pageTitle, PageType funcType, ...)
 {
   //页面链表初始化(只会执行一次)
   if (initPageLink == false)
@@ -90,10 +91,10 @@ void AddPage(PageNode* page, bool usePageTitle, char* pageTitle, PageType funcTy
 
 /**
   * @brief  添加项
-  * @param  page: 页面节点
-  * @param  item: 需要添加的项节点
-  * @param  itemTitle: 为你的项取个名字吧 (｡･∀･)ﾉﾞ
-  * @param  funcType: 定义项类型
+  * @param  page 页面节点
+  * @param  item 需要添加的项节点
+  * @param  itemTitle 为你的项取个名字吧 (｡･∀･)ﾉﾞ
+  * @param  funcType 定义项类型
   * @param  ... 可变参数，由funcType决定
   * @retval None
   */
@@ -161,8 +162,8 @@ void ListPopBack(PageLinkList _pageLinkList)
 	free(tail);//释放tail结点
 }
 
-/// @brief 根据页面ID查找对应页面
-/// @param pageID 页面ID
+/// @brief  根据页面ID查找对应页面
+/// @param  pageID 页面ID
 /// @return 页面节点
 PageNode* LocateElem(uint16_t pageID)
 {

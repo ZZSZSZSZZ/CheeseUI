@@ -44,7 +44,7 @@ typedef struct Page
 
 PageLinkList InitPageLinkList();
 PageLinkList GetPageLinkList();
-void AddPage(PageNode* page, bool usePageTitle, char* pageTitle, PageType funcType);
+void AddPage(PageNode* page, bool usePageTitle, char* pageTitle, PageType funcType, ...);
 void AddItem(PageNode* page, ItemNode* item, char* title, ItemType funcType, ...);
 void ListPushBack(PageLinkList _pageLinkList, PageNode* page);
 void ListPopBack(PageLinkList _pageLinkList);
